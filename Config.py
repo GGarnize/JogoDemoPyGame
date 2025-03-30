@@ -30,4 +30,4 @@ VELOCIDADE_JOGADOR = 5
 
 # Outras constantes
 ATRASO_PULO = 400 #ms
-FPS = 60
+FPS = 45
