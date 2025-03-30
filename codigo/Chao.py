@@ -1,14 +1,16 @@
-# arquivo: codigo/Chao.py
+import pygame
+from Config import ALTURA_JANELA, COR_CHAO, LARGURA_JANELA, PLATAFORMA_ALTURA
 from codigo.Entidade import Entidade
 
 class Chao(Entidade):
-    def __init__(self, name: str, position: tuple):
-        super().__init__(name, position)
-        # Cria uma area de contato com metade da altura do chão, deslocada para a parte inferior
-        self.area_contato = self.rect.copy()
-        self.area_contato.height = self.rect.height // 2
-        self.area_contato.top = self.rect.top + (self.rect.height // 2)
+    def __init__(self, chao_loc):
+        super().__init__("Chao", (chao_loc, ALTURA_JANELA - PLATAFORMA_ALTURA))
+        self.image = pygame.image.load('./recurso/chao_base.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image, (LARGURA_JANELA, PLATAFORMA_ALTURA))
+        self.rect = self.image.get_rect(topleft=(chao_loc, ALTURA_JANELA - PLATAFORMA_ALTURA))
 
-    def move(self):
-        # O chão não se move, então não faz nada.
+    def mover(self, *args, **kwargs):
+        pass
+
+    def atualizar(self):
         pass

@@ -1,26 +1,24 @@
-from Config import JAN_ALTURA
-from codigo.Entidade import Entidade
-from codigo.Jogador import GRAVIDADE
+import pygame
+from codigo.Pessoa import Pessoa
 
+class Inimigo(Pessoa):
+    def __init__(self, posicao):
+        super().__init__("Inimigo", posicao)
+        # Cria imagem simples para o inimigo (por exemplo, retângulo azul)
+        self.image = pygame.Surface((40, 40))
+        self.image.fill((0, 0, 255))
+        self.rect = self.image.get_rect(topleft=posicao)
+        self.direcao = 1
+        self.velocidade = 3
 
-class Inimigo(Entidade):
-    def __init__(self, name: str, position: tuple):
-        super().__init__(name, position)
-        self.speed_x = 0
-        self.vel_y = 0
-        self.no_chao = False
+    def mover(self):
+        # Movimento simples horizontal
+        self.rect.x += self.velocidade * self.direcao
+        # Troca de direção em limites definidos (ajuste conforme o seu nível)
+        if self.rect.x > 600 or self.rect.x < 100:
+            self.direcao *= -1
+        # Aplica gravidade, se necessário (dependendo da mecânica)
+        self.aplicar_gravidade()
 
-    def move(self):
-        self.rect.x -= self.speed_x
-
-        # Aplicando gravidade
-        self.vel_y += GRAVIDADE
-        self.rect.y += self.vel_y
-
-        # Limitar para não sair da tela (ou checar colisão com chão)
-        # Aqui apenas um exemplo de "chão" no final da janela,
-        # mas depois faremos a colisão com a entidade "Chao".
-        if self.rect.bottom >= JAN_ALTURA:
-            self.rect.bottom = JAN_ALTURA
-            self.vel_y = 0
-            self.no_chao = True
+    def atualizar(self):
+        pass

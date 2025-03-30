@@ -1,31 +1,33 @@
-# arquivo: codigo/FabricaEntidades.py
-import random
-from Config import JAN_LARGURA, JAN_ALTURA
-from codigo.ImagemFundo import ImagemFundo
-from codigo.Jogador import Jogador
+from Config import ALTURA_JANELA, LARGURA_JANELA, PLATAFORMA_ALTURA, PLATAFORMA_LARGURA
 from codigo.Chao import Chao
+from codigo.ImagemFundo import ImagemFundo
 from codigo.Inimigo import Inimigo
+from codigo.Jogador import Jogador
+from codigo.Plataforma import Plataforma
+
 
 class FabricaEntidades:
-
     @staticmethod
-    def cria_entidade(entidade_nome):
-        match entidade_nome:
-            case 'Fase1_':
-                lista_fundos = []
-                for i in range(5):
-                    lista_fundos.append(ImagemFundo(f'Fase1_{i + 1}', (0, 0)))
-                    lista_fundos.append(ImagemFundo(f'Fase1_{i + 1}', (JAN_LARGURA, 0)))
-                return lista_fundos
-
-            case 'Jogador':
-                return [Jogador('Jogador', (10, 50))]
-
-            case 'Chao':
-                return [Chao('chao_base', (0, JAN_ALTURA - 35))]
-
-            case 'Inimigo':
-                return [Inimigo('Inimigo', (JAN_LARGURA - 170 ,50))]
-
-            case _:
-                return []
+    def criar_entidade(tipo, **kwargs):
+        if tipo == "Fase1_":
+            lista_fundos = []
+            for i in range(5):
+                lista_fundos.append(ImagemFundo(f'Fase1_{i + 1}', (0, 0)))
+                lista_fundos.append(ImagemFundo(f'Fase1_{i + 1}', (LARGURA_JANELA, 0)))
+            return lista_fundos
+        if tipo == "jogador":
+            return Jogador(posicao=kwargs.get("posicao", (10, ALTURA_JANELA - PLATAFORMA_ALTURA)), chao=kwargs.get("chao", []), plataforma=kwargs.get("plataforma", []))
+        elif tipo == "inimigo":
+            return Inimigo(kwargs.get("posicao", (300, 50)))
+        elif tipo == "plataforma":
+            posicao = kwargs.get("posicao", (100, 200))
+            return Plataforma(posicao[0], posicao[1])
+        elif tipo == "chao":
+            lista_chao = []
+            chao = 0
+            while chao <= (LARGURA_JANELA / PLATAFORMA_LARGURA) + PLATAFORMA_LARGURA:
+               lista_chao.append(Chao(chao * PLATAFORMA_LARGURA))
+               chao += 1
+            return lista_chao
+        else:
+            return None

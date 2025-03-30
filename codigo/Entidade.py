@@ -1,17 +1,17 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
+import pygame
 
-import pygame.image
-
-class Entidade(ABC):
-    def __init__(self, name: str, position: tuple):
-        self.name = name
-        self.surf = pygame.image.load('./recurso/' + name + '.png').convert_alpha()
-        self.rect = self.surf.get_rect(left=position[0], top=position[1])
-        self.speed = 0
-        self.last_dmg = 'None'
+class Entidade(ABC, pygame.sprite.Sprite):
+    def __init__(self, nome: str, posicao: tuple):
+        super().__init__()
+        self.nome = nome
+        self.image = None  # Será definida nas classes concretas
+        self.rect = pygame.Rect(posicao[0], posicao[1], 0, 0)
 
     @abstractmethod
-    def move(self):
+    def mover(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def atualizar(self):
         pass
