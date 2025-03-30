@@ -1,5 +1,7 @@
 import pygame
-
+#Info trabalho:
+DEV="Guilherme Garnizé"
+RU=4579677
 # Cores
 COR_TEXTO_MENU = [(255, 255, 0), (255, 255, 255)]
 COR_FUNDO_MENU = (0, 0, 128)

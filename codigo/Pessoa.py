@@ -1,4 +1,3 @@
-# arquivo: codigo/Pessoa.py
 from abc import ABC, abstractmethod
 
 import pygame
@@ -8,10 +7,6 @@ from codigo.Entidade import Entidade
 
 
 class Pessoa(Entidade, ABC):
-    """
-    Classe abstrata que agrega a lógica de física, colisões e controle de pulo.
-    """
-
     def __init__(self, img, chao_lista, plataforma_lista, construcao_lista):
         super().__init__(nome="Pessoa", posicao=(0, 0))
         self.velocidade_y = None
@@ -37,7 +32,6 @@ class Pessoa(Entidade, ABC):
             self.moverY += GRAVIDADE
 
     def pular(self):
-        """Tenta iniciar o pulo se o atraso  tiver passado e o personagem não estiver pulando."""
         tempo_atual = pygame.time.get_ticks()
         if not self.pulando and (tempo_atual - self.ultimo_pulo >= self.atraso_pulo):
             self.ultimo_pulo = tempo_atual

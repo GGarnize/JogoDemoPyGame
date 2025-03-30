@@ -1,7 +1,7 @@
 import pygame
 from pygame import Surface
 
-from Config import ALTURA_JANELA, COR_AMARELO, COR_BRANCO, COR_FUNDO_MENU, COR_LARANJA, LARGURA_JANELA, OPCOES_MENU
+from Config import ALTURA_JANELA, COR_AMARELO, COR_BRANCO, COR_FUNDO_MENU, COR_LARANJA, DEV, LARGURA_JANELA, OPCOES_MENU
 from codigo.Util import imprimir_texto
 
 
@@ -35,6 +35,14 @@ class Menu:
                 else:
                     imprimir_texto(superficie=self.janela, texto=OPCOES_MENU[i], tamanho=30, cor=COR_BRANCO,
                                    posicao=((LARGURA_JANELA / 2), (ALTURA_JANELA - 150) + 35 * i))
+            imprimir_texto(superficie=self.janela, texto="Feito por: " + DEV, tamanho=13, cor=COR_BRANCO,
+                           posicao=(100, ALTURA_JANELA - 20))
+            imprimir_texto(superficie=self.janela, texto="Movimento: Setas", tamanho=13, cor=COR_BRANCO,
+                           posicao=(65, ALTURA_JANELA - 80))
+            imprimir_texto(superficie=self.janela, texto="Pulo: Seta Cima ou Espaço", tamanho=13, cor=COR_BRANCO,
+                           posicao=(90, ALTURA_JANELA - 60))
+            imprimir_texto(superficie=self.janela, texto="Tiro: Ctrl", tamanho=13, cor=COR_BRANCO,
+                           posicao=(39, ALTURA_JANELA - 40))
             pygame.display.flip()
 
             for evento in pygame.event.get():

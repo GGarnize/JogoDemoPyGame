@@ -7,9 +7,9 @@ from codigo.Entidade import Entidade
 class ImagemFundo(Entidade):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
-        self.image = pygame.image.load(f'recurso/{name}.png').convert_alpha()
-        self.image = pygame.transform.scale(self.image, (LARGURA_JANELA, ALTURA_JANELA))
-        self.rect = self.image.get_rect(topleft=position)
+        self.imagem = pygame.image.load(f'recurso/{name}.png').convert_alpha()
+        self.imagem = pygame.transform.scale(self.imagem, (LARGURA_JANELA, ALTURA_JANELA))
+        self.rect = self.imagem.get_rect(topleft=position)
 
 
     def mover(self):

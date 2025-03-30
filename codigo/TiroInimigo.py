@@ -7,10 +7,10 @@ from codigo.Entidade import Entidade
 class TiroInimigo(Entidade):
     def __init__(self, position: tuple):
         super().__init__('projetil', position)
-        self.image = pygame.image.load('./recurso/projetil.png').convert_alpha()
-        self.image = pygame.transform.scale(self.image, (8, 5))
-        self.image = pygame.transform.flip(self.image, True, False)
-        self.rect = self.image.get_rect(topleft=position)
+        self.imagem = pygame.image.load('./recurso/projetil.png').convert_alpha()
+        self.imagem = pygame.transform.scale(self.imagem, (8, 5))
+        self.imagem = pygame.transform.flip(self.imagem, True, False)
+        self.rect = self.imagem.get_rect(topleft=position)
 
     def mover(self, ):
 

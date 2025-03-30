@@ -28,10 +28,11 @@ class FabricaEntidades:
                            construcao=kwargs.get("construcao", []))
 
         elif tipo == "plataforma":
+            nome = kwargs.get("nome", "Plataforma")
             posicao = kwargs.get("posicao", (100, 200))
             tamanho = (kwargs.get("width", PLATAFORMA_LARGURA), kwargs.get("height", PLATAFORMA_ALTURA))
             imagem = (kwargs.get("imagem_custom", "chao_base"))
-            return Plataforma(posicao[0], posicao[1], tamanho[0], tamanho[1], imagem)
+            return Plataforma(nome, posicao[0], posicao[1], tamanho[0], tamanho[1], imagem)
         elif tipo == "chao":
             lista_chao = []
             chao = 0

@@ -2,6 +2,7 @@ from Config import LARGURA_JANELA
 from codigo.Entidade import Entidade
 from codigo.Inimigo import Inimigo
 from codigo.Jogador import Jogador
+from codigo.Plataforma import Plataforma
 from codigo.TiroInimigo import TiroInimigo
 from codigo.TiroJogador import TiroJogador
 
@@ -50,3 +51,16 @@ class MediadorEntidades:
         for entidade in lista_entidades:
             if entidade.vida <= 0:
                 lista_entidades.remove(entidade)
+
+    @staticmethod
+    def verificar_fim_fase(lista_entidades: list) -> str | bool:
+        jogadores = [e for e in lista_entidades if isinstance(e, Jogador)]
+        inimigos = [e for e in lista_entidades if isinstance(e, Inimigo)]
+        construcao = [e for e in lista_entidades if isinstance(e, Plataforma) and e.nome == 'Casa']
+        if not jogadores:
+            return 'perdeu'
+        jogador = jogadores[0]
+        for casa in construcao:
+            if jogador.rect.colliderect(casa.rect) and not inimigos:
+                return 'ganhou'
+        return False

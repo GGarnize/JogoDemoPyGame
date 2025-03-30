@@ -15,12 +15,9 @@ class Jogo:
         while True:
             menu = Menu(self.janela)
             opcao_menu = menu.executar()
-            if opcao_menu in [OPCOES_MENU[0], OPCOES_MENU[1]]:
+            if opcao_menu in [OPCOES_MENU[0]]:
                 fase = Fase(self.janela, "Fase1")
                 fase.executar()
-            elif opcao_menu == OPCOES_MENU[2]:
-                pygame.quit()
-                sys.exit()
             else:
                 pygame.quit()
                 sys.exit()

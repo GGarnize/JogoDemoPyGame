@@ -1,4 +1,3 @@
-# arquivo: codigo/Jogador.py
 import pygame
 from Config import ATRASO_TIRO_JOGADOR, LARGURA_JANELA, VELOCIDADE_JOGADOR, ALTURA_JANELA
 from codigo.Pessoa import Pessoa
@@ -7,12 +6,10 @@ from codigo.TiroJogador import TiroJogador
 
 class Jogador(Pessoa):
     def __init__(self, posicao, chao, plataforma, construcao):
-        # "jogador.png" é o nome da imagem
         super().__init__(img="jogador", chao_lista=chao, plataforma_lista=plataforma, construcao_lista=construcao)
-        self.image = pygame.image.load('./recurso/jogador.png').convert_alpha()
-        self.image = pygame.transform.scale(self.image, (50, 50))
-        self.rect = self.image.get_rect(topleft=posicao)
-        # Cria uma area_contato menor do lado direito (reduz 10 pixels)
+        self.imagem = pygame.image.load('./recurso/jogador.png').convert_alpha()
+        self.imagem = pygame.transform.scale(self.imagem, (50, 50))
+        self.rect = self.imagem.get_rect(topleft=posicao)
         self.area_contato_deslocamento = 15
         self.area_contato = pygame.Rect(self.rect.x, self.rect.y, self.rect.width - self.area_contato_deslocamento, self.rect.height)
 
