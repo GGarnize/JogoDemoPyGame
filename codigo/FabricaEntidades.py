@@ -22,7 +22,11 @@ class FabricaEntidades:
                            construcao=kwargs.get("construcao", []),
                            )
         elif tipo == "inimigo":
-            return Inimigo(kwargs.get("posicao", (300, 50)))
+            return Inimigo(posicao=kwargs.get("posicao", (300, 50)),
+                           chao=kwargs.get("chao", []),
+                           plataforma=kwargs.get("plataforma", []),
+                           construcao=kwargs.get("construcao", []))
+
         elif tipo == "plataforma":
             posicao = kwargs.get("posicao", (100, 200))
             tamanho = (kwargs.get("width", PLATAFORMA_LARGURA), kwargs.get("height", PLATAFORMA_ALTURA))

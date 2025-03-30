@@ -41,6 +41,11 @@ class Fase:
                                                                     chao=chao,
                                                                     plataforma=lista_plataforma,
                                                                     construcao=lista_construcao))
+        self.lista_entidades.append(FabricaEntidades.criar_entidade('inimigo',
+                                                                    posicao=(700, 40),
+                                                                    chao=chao,
+                                                                    plataforma=lista_plataforma,
+                                                                    construcao=lista_construcao))
 
     def executar(self):
         while True:

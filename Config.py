@@ -21,7 +21,7 @@ PLATAFORMA_LARGURA = 100
 CHAO_LOCALIZACAO = []
 
 # Opções de menu
-OPCOES_MENU = ["Novo Jogo", "Pontuação", "Sair"]
+OPCOES_MENU = ["Começar!", "Sair"]
 
 # Parâmetros de física
 GRAVIDADE = 3.2
