@@ -21,7 +21,8 @@ class FabricaEntidades:
             return Inimigo(kwargs.get("posicao", (300, 50)))
         elif tipo == "plataforma":
             posicao = kwargs.get("posicao", (100, 200))
-            return Plataforma(posicao[0], posicao[1])
+            tamanho = (kwargs.get("width", PLATAFORMA_LARGURA), kwargs.get("height", PLATAFORMA_ALTURA))
+            return Plataforma(posicao[0], posicao[1], tamanho[0], tamanho[1])
         elif tipo == "chao":
             lista_chao = []
             chao = 0

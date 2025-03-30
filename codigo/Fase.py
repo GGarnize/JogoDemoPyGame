@@ -21,7 +21,8 @@ class Fase:
         lista_plataforma = [
             FabricaEntidades.criar_entidade('plataforma', posicao=(300, 300)),
             FabricaEntidades.criar_entidade('plataforma', posicao=(400, 400)),
-            FabricaEntidades.criar_entidade('plataforma', posicao=(500, 500))
+            FabricaEntidades.criar_entidade('plataforma', posicao=(500, 500)),
+            FabricaEntidades.criar_entidade('plataforma', posicao=(100, 40), width=50, height=230)
         ]
         self.lista_entidades.extend(lista_plataforma)
         # Cria o jogador, passando as listas de chão e plataforma para colisão
