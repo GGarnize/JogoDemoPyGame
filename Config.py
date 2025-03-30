@@ -24,9 +24,10 @@ CHAO_LOCALIZACAO = []
 OPCOES_MENU = ["Novo Jogo", "Pontuação", "Sair"]
 
 # Parâmetros de física
-GRAVIDADE = 0.8
-FORCA_PULO = 10
+GRAVIDADE = 3.2
+FORCA_PULO = 40
 VELOCIDADE_JOGADOR = 5
 
 # Outras constantes
-FPS = 30
+ATRASO_PULO = 400 #ms
+FPS = 60

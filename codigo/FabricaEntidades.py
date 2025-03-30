@@ -16,13 +16,18 @@ class FabricaEntidades:
                 lista_fundos.append(ImagemFundo(f'Fase1_{i + 1}', (LARGURA_JANELA, 0)))
             return lista_fundos
         if tipo == "jogador":
-            return Jogador(posicao=kwargs.get("posicao", (10, ALTURA_JANELA - PLATAFORMA_ALTURA)), chao=kwargs.get("chao", []), plataforma=kwargs.get("plataforma", []))
+            return Jogador(posicao=kwargs.get("posicao", (10, ALTURA_JANELA - PLATAFORMA_ALTURA)),
+                           chao=kwargs.get("chao", []),
+                           plataforma=kwargs.get("plataforma", []),
+                           construcao=kwargs.get("construcao", []),
+                           )
         elif tipo == "inimigo":
             return Inimigo(kwargs.get("posicao", (300, 50)))
         elif tipo == "plataforma":
             posicao = kwargs.get("posicao", (100, 200))
             tamanho = (kwargs.get("width", PLATAFORMA_LARGURA), kwargs.get("height", PLATAFORMA_ALTURA))
-            return Plataforma(posicao[0], posicao[1], tamanho[0], tamanho[1])
+            imagem = (kwargs.get("imagem_custom", "chao_base"))
+            return Plataforma(posicao[0], posicao[1], tamanho[0], tamanho[1], imagem)
         elif tipo == "chao":
             lista_chao = []
             chao = 0
