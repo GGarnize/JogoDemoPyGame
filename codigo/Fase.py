@@ -1,5 +1,6 @@
 # arquivo: codigo/Fase.py
 import sys
+from msilib.schema import Media
 
 import pygame
 from pygame import Surface
@@ -7,6 +8,9 @@ from pygame import Surface
 from Config import FPS
 from codigo.Entidade import Entidade
 from codigo.FabricaEntidades import FabricaEntidades
+from codigo.Inimigo import Inimigo
+from codigo.Jogador import Jogador
+from codigo.MediadorEntidades import MediadorEntidades
 
 
 class Fase:
@@ -28,11 +32,11 @@ class Fase:
             FabricaEntidades.criar_entidade('plataforma', posicao=(250, 260), width=150),
             FabricaEntidades.criar_entidade('plataforma', posicao=(400, 200), width=150),
             FabricaEntidades.criar_entidade('plataforma', posicao=(600, 95), width=200),
-            FabricaEntidades.criar_entidade('plataforma', posicao=(0, 89), width=430),
+            FabricaEntidades.criar_entidade('plataforma', posicao=(0, 95), width=430),
         ]
         self.lista_entidades.extend(lista_plataforma)
         lista_construcao = [
-            FabricaEntidades.criar_entidade('plataforma', posicao=(0, 5), width=120, height=90, imagem_custom='casa2'),
+            FabricaEntidades.criar_entidade('plataforma', posicao=(0, 10), width=120, height=90, imagem_custom='casa2'),
         ]
         self.lista_entidades.extend(lista_construcao)
         # Cria o jogador, passando as listas de chão e plataforma para colisão
@@ -53,9 +57,14 @@ class Fase:
             self.janela.fill((0, 0, 0))
             # Para cada entidade, chamamos mover() e atualizar()
             for ent in self.lista_entidades:
+                self.janela.blit(source=ent.image, dest=ent.rect)
                 ent.mover()
                 ent.atualizar()
-                self.janela.blit(ent.image, ent.rect)
+                if isinstance(ent, (Jogador, Inimigo)):
+                    tiro = ent.tiro()
+                    if tiro is not None:
+                        self.lista_entidades.append(tiro)
+
 
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
@@ -63,3 +72,5 @@ class Fase:
                     sys.exit()
 
             pygame.display.flip()
+            MediadorEntidades.verificar_colisao(lista_entidades=self.lista_entidades)
+            MediadorEntidades.verificar_vida(self.lista_entidades)

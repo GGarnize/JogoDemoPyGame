@@ -1,5 +1,9 @@
 import pygame
+
+from Config import ATRASO_TIRO_INIMIGO
 from codigo.Pessoa import Pessoa
+from codigo.TiroInimigo import TiroInimigo
+
 
 class Inimigo(Pessoa):
     def __init__(self, posicao, chao, plataforma, construcao):
@@ -15,3 +19,10 @@ class Inimigo(Pessoa):
 
     def atualizar(self):
         self.update()
+
+    def tiro(self):
+        self.atraso_tiro -= 1
+        if self.atraso_tiro <= 0:
+            self.atraso_tiro = ATRASO_TIRO_INIMIGO
+            return TiroInimigo(position=(self.rect.left + 1, self.rect.top + 20))
+

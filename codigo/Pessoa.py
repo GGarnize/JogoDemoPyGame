@@ -29,6 +29,9 @@ class Pessoa(Entidade, ABC):
         self.atraso_pulo = ATRASO_PULO
         self.ultimo_pulo = 0
 
+        self.atraso_tiro = 0
+
+
     def gravidade(self):
         if self.pulando:
             self.moverY += GRAVIDADE
@@ -91,4 +94,8 @@ class Pessoa(Entidade, ABC):
 
     @abstractmethod
     def mover(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def tiro(self):
         pass

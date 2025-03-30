@@ -1,7 +1,9 @@
 # arquivo: codigo/Jogador.py
 import pygame
-from Config import LARGURA_JANELA, VELOCIDADE_JOGADOR, ALTURA_JANELA
+from Config import ATRASO_TIRO_JOGADOR, LARGURA_JANELA, VELOCIDADE_JOGADOR, ALTURA_JANELA
 from codigo.Pessoa import Pessoa
+from codigo.TiroJogador import TiroJogador
+
 
 class Jogador(Pessoa):
     def __init__(self, posicao, chao, plataforma, construcao):
@@ -32,3 +34,15 @@ class Jogador(Pessoa):
 
     def atualizar(self):
         self.update()
+
+    def tiro(self):
+        self.atraso_tiro -= 1
+        if self.atraso_tiro <= 0:
+            pressed_key = pygame.key.get_pressed()
+            if pressed_key[pygame.K_LCTRL] or pressed_key[pygame.K_RCTRL]:
+                self.atraso_tiro = ATRASO_TIRO_JOGADOR
+                return TiroJogador(position=(self.rect.right - 1, self.rect.top + 20))
+            else:
+                return None
+        else:
+            return None
